@@ -23,6 +23,7 @@ export default function MemoryGame() {
   const [cards,setCards] = useState<string[]>(generateDeck());
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matchedItems, setMatchedItem] = useState<number[]>([]);
+  
 
   useEffect(() => {
     const checkedForMatch = () => {
@@ -38,6 +39,7 @@ export default function MemoryGame() {
         checkedForMatch();
       }, 1000);
     }
+
   }, [cards, flipped, matchedItems]);
 
   const handleClick = (index: number) => {
@@ -63,7 +65,7 @@ export default function MemoryGame() {
       <div className=" grid grid-cols-4 gap-5 transition-transform">
         {cards.map((card, index) => (
           <button
-            className={ ` w-20 h-20  md:w-28 md:h-28 transform bg-slate-200 flex items-center  font-bold text-4xl  ease-in-out text-black justify-center cursor-pointer transition-transform duration-300 ${
+            className={ ` w-20 h-20 rounded-md  md:w-28 md:h-28 transform bg-slate-200 flex items-center  font-bold text-4xl  ease-in-out text-black justify-center cursor-pointer transition-transform duration-300 ${
               flipped.includes(index) || matchedItems.includes(index)
                 ? "rotate-180 "
                 : ""
@@ -77,7 +79,7 @@ export default function MemoryGame() {
                 src={`/memorycards/${card}`}
                 height={100}
                 alt="Memory Cards"
-                className="rotate-180"
+                className="rotate-180 rounded-md"
               />
             ) : (
               "?"
