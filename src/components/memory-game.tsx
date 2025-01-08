@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import ReactConfetti from "react-confetti";
 
 const generateDeck = () => {
   const memoryCards = [
@@ -23,7 +24,7 @@ export default function MemoryGame() {
   const [cards,setCards] = useState<string[]>(generateDeck());
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matchedItems, setMatchedItem] = useState<number[]>([]);
-  
+ 
 
   useEffect(() => {
     const checkedForMatch = () => {
@@ -55,6 +56,7 @@ export default function MemoryGame() {
   }
 
   const gameOver = matchedItems.length === cards.length;
+ 
   return (
     <div className="w-11/12  md:w-auto">
       <div className="flex items-center justify-center font-bold flex-col p-5">
@@ -87,7 +89,7 @@ export default function MemoryGame() {
           </button>
         ))}
       </div>
-
+    { gameOver &&   <ReactConfetti width={1500}/> }
       <button onClick={restart} className= "flex bg-gray-700 p-2  text-white mt-4  rounded-md" >restart</button>
     </div>
   );
